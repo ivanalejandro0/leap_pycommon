@@ -21,16 +21,20 @@ If you are packaging Requests, e.g., for a Linux distribution or a managed
 environment, you can change the definition of where() to return a separately
 packaged CA bundle.
 """
-import os.path
+import locale
+import os
 
 
 def where():
     """
     Return the preferred certificate bundle.
-    :rtype: str
+
+    :rtype: unicode
     """
     # vendored bundle inside Requests, plus some additions of ours
-    return os.path.join(os.path.dirname(__file__), 'cacert.pem')
+    dir_name = os.path.dirname(__file__).decode(locale.getpreferredencoding())
+    return os.path.join(dir_name, u'cacert.pem')
+
 
 if __name__ == '__main__':
     print(where())

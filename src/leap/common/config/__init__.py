@@ -31,9 +31,11 @@ def get_path_prefix(standalone=False):
                        Otherwise, it will return the system default for
                        configuration storage.
     :type standalone: bool
+
+    :rtype: unicode
     """
     config_home = get_xdg_config_home()
     if standalone:
-        config_home = os.path.join(os.getcwd(), "config")
+        config_home = os.path.join(os.getcwdu(), u"config")
 
     return config_home
